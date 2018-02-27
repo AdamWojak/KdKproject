@@ -1,11 +1,11 @@
 package pl.kobietydokodu.catbase.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Cat {
 
 	private String name;
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	private Float weight;
 	private String ownerName;
 
@@ -21,11 +21,11 @@ public class Cat {
 		this.name = name;
 	}
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
