@@ -10,6 +10,8 @@ public class Main {
 
 	static Scanner scan = new Scanner(System.in);
 
+	static CatDAO catDao = new CatDAO();
+
 	public static void main(String[] args) {
 
 		Cat cat = new Cat();
@@ -46,6 +48,8 @@ public class Main {
 				System.out.println("Error with format (YYYY-MM-DD) Try again:");
 			}
 		}
+
+		catDao.addCat(cat);
 
 		System.out.println("Thank you, that is all information i need!");
 		scan.close();
