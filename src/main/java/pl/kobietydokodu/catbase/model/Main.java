@@ -3,6 +3,8 @@ package pl.kobietydokodu.catbase.model;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -19,21 +21,29 @@ public class Main {
 
 		System.out.println("Ok! so for now, i know almost everythink about this cat! :-)");
 
+		System.out.println("What is the weight of this cat?");
+		Pattern weightPattern = Pattern.compile("([1-9]+\\.?[0-9]*)");
 		do {
-			System.out.println("What is the weight of this cat?");
-			try {
-				cat.setWeight(Float.parseFloat(getUserInput()));
-			} catch (NumberFormatException e) {
-				System.out.println("It has to be a float value");
+			Matcher matcher = weightPattern.matcher(getUserInput());
+			if (matcher.matches()) {
+				cat.setWeight(Float.parseFloat(matcher.group(1)));
+			} else {
+				System.out.println("It has to be a float value ");
 			}
 		} while (cat.getWeight() == null);
 
+		System.out.println("When this cat was born?(YYYY-MM-DD)");
+		Pattern birthPattern = Pattern.compile("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))");
 		while (cat.getDateOfBirth() == null) {
-			System.out.println("When this cat was born?(YYYY-MM-DD)");
-			try {
-				cat.setDateOfBirth(LocalDate.parse(getUserInput()));
-			} catch (DateTimeParseException e) {
-				System.out.println("Some error with format");
+			Matcher matcher = birthPattern.matcher(getUserInput());
+			if (matcher.matches()) {
+				// try {
+				cat.setDateOfBirth(LocalDate.parse(matcher.group()));
+				// } catch (DateTimeParseException e) {
+				// System.out.println("Error. Try again:");
+				// }
+			} else {
+				System.out.println("Error with format (YYYY-MM-DD) Try again:");
 			}
 		}
 
