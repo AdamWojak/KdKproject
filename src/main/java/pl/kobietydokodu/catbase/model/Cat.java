@@ -1,5 +1,6 @@
 package pl.kobietydokodu.catbase.model;
 
+
 import java.time.LocalDate;
 
 public class Cat {
